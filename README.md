@@ -1,7 +1,6 @@
 # campus_ws · 校园视觉
 
-> 🏁 这是我参加 **T-DT 校园赛(2027)** 培训期间开发的视觉程序;**我因学习原因中途退出了培训**,现将当时的代码与笔记整理归档到这里。
-> 仓库里只有一个 `campus_ws/` 工作空间:我写的源码、训练数据、模型和我备赛时记的文档都放在里面。
+> 🏁 这是我参加 **T-DT 校园赛(2027)** 培训期间开发的视觉程序;**我因学习原因中途退出了培训**。
 
 ## 我做了什么
 
@@ -24,5 +23,3 @@ colcon build --packages-select tdt_interface campus_vision
 source install/setup.bash
 ros2 run campus_vision campus_vision
 ```
-
-> 详细说明看我写的 [campus_ws/README.md](campus_ws/README.md) 和 [TDT文档](campus_ws/TDT文档/)。

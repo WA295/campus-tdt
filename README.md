@@ -23,3 +23,13 @@ colcon build --packages-select tdt_interface campus_vision
 source install/setup.bash
 ros2 run campus_vision campus_vision
 ```
+
+## 仓库里还有什么
+
+| 目录 | 说明 |
+|---|---|
+| `tdt_ros_ws/` | TDT 消息接口 + 第一个节点 |
+| `task6_ws/`、`ros_ws/` | 训练任务 6 与 ROS2 入门练习 |
+| `campusgame_ros/`、`ros2_auto_framework/` | 官方通信框架 |
+| `学习任务/` | 学习任务 2~7 的资料与练习 |
+| `资料/` | 手册、规则与参考文档 |

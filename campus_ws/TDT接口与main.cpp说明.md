@@ -1,7 +1,7 @@
 # T-DT 校园赛 2027 · 接口协议与 campus_node(main.cpp) 说明
 
-> 本文档由官方游戏文件（`/opt/tdt-campus-game`、`/usr/share/tdt-campus-game`、
-> `~/下载/ros2_auto_framework/README.md`）与本工作空间 `campus_ws` 的实际代码比对整理而成。
+> 这是我备赛期间整理的笔记:一边对照官方游戏文件(`/opt/tdt-campus-game`、`/usr/share/tdt-campus-game`、
+> `~/下载/ros2_auto_framework/README.md`),一边核对自己在 `campus_ws` 里写的代码,把「官方接口协议」和「`main.cpp` 里到底用了哪些名字、字段是否正确」放在一起,方便随时查。
 > 目的：把「官方接口协议」和「`main.cpp` 里到底用了哪些名字、字段是否正确」放在一起，方便查用。
 
 ---

@@ -1,28 +1,25 @@
-# campus_vision · 校园视觉(TDT / RoboMaster 青训)
+# campus_vision · 我的校园赛视觉程序
 
-基于 **ROS2 + OpenCV** 的校园视觉工程:TDT 机器人接口开发(main.cpp / five.cpp)、`tdt_interface` 自定义消息协议、数字识别(SVM)与数据集。
+这是我参加 **T-DT 校园赛**时写的 ROS2 视觉节点,干的活:
 
-## 目录结构
+**收到游戏画面 → 找红色灯条 → 两两配对成装甲板 → PnP 算目标位姿 → 把 yaw/pitch/开火许可发给游戏 → SVM 认数字。**
+
+## 目录
 
 ```
 campus_ws/
-├── src/campus_vision/              # ROS2 功能包
-│   ├── src/main.cpp                # 主程序(多线程视觉 + TDT 接口)
-│   ├── src/five.cpp                # 数字识别相关
-│   ├── src/per_100_datasets/       # 数字识别数据集(图片)
-│   ├── include/campus_vision/      # 头文件
-│   └── tdt_interface/              # TDT 自定义消息接口包
-├── digit_svm.yml                   # SVM 数字识别模型
-├── TDT接口与main.cpp说明.md         # 总说明文档
-└── TDT文档/                        # 详细文档
-    ├── 0-导读与编写逻辑/
-    ├── 1-接口协议/                  # 官方游戏与运行环境、话题协议与 QoS、消息定义
-    ├── 2-main.cpp详解/             # 变量清单、逐项核对、函数清单
-    ├── 3-运行与排障/               # 编译运行、快速排障、注意事项
-    └── 4-官方文档附录/             # 发行说明、接入包说明、许可证
+├── src/campus_vision/
+│   ├── src/main.cpp              # 主程序,核心逻辑 11 步(详解见 TDT文档)
+│   ├── src/five.cpp              # 数字识别相关
+│   ├── src/per_100_datasets/     # 数字识别数据集
+│   ├── include/campus_vision/    # 头文件
+│   └── tdt_interface/            # 和游戏约定的消息接口
+├── digit_svm.yml                 # SVM 数字识别模型
+├── TDT接口与main.cpp说明.md       # 完整版说明(协议 + 代码逐行对照)
+└── TDT文档/                      # 我的备赛笔记(分章版,按需查阅)
 ```
 
-## 构建
+## 怎么跑
 
 ```bash
 cd ~/campus_ws
@@ -31,8 +28,14 @@ source install/setup.bash
 ros2 run campus_vision campus_vision
 ```
 
-## 说明
+## 我踩过的坑
 
-- 平台:ROS2(Humble)+ OpenCV;
-- 通信:通过 `tdt_interface` 自定义话题与机器人主控交换数据(详见 `TDT文档/1-接口协议`);
-- 本仓库仅包含源码与文档,`build/` `install/` `log/` 等构建产物不入库。
+都整理在 `TDT文档/3-运行与排障/` 里了,比如:
+
+- 每 3 帧才处理 1 帧,不然 CPU 扛不住;
+- 话题要用 best_effort QoS,不然收不到游戏画面;
+- 数字识别先用 SVM 兜底,识别率不足再上更强的模型。
+
+> 想看整体逻辑 → `TDT文档/0-导读与编写逻辑/00-导读与编写逻辑.md`;
+> 想查某个函数/变量 → `TDT文档/2-main.cpp详解/` 里的清单;
+> 出毛病了 → `TDT文档/3-运行与排障/10-快速排障.md`。

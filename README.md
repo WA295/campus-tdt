@@ -1,16 +1,20 @@
 # campus_ws · 校园视觉
 
-> 🏁 **本项目为「校园赛」开发**(RoboMaster 校园视觉 / TDT 机器人),现作为参赛作品归档于本仓库。
+> 🏁 这是我参加 **T-DT 校园赛(2027)** 时开发的视觉程序,赛后从机器人上整理归档到这里。
+> 仓库里只有一个 `campus_ws/` 工作空间:我写的源码、训练数据、模型和我备赛时记的文档都放在里面。
 
-本仓库只包含一个工作区文件夹 **`campus_ws/`**:
+## 我做了什么
 
-| 路径 | 说明 |
+| 内容 | 说明 |
 |---|---|
-| [campus_ws/README.md](campus_ws/README.md) | 项目详情:技术栈、目录结构、构建方式 |
-| `campus_ws/src/campus_vision/` | ROS2 功能包(main.cpp / five.cpp / 数字识别数据集 / tdt_interface 消息接口) |
-| `campus_ws/digit_svm.yml` | SVM 数字识别模型 |
-| `campus_ws/TDT文档/` | 接口协议、main.cpp 详解、运行排障、官方附录 |
-| `campus_ws/TDT接口与main.cpp说明.md` | 总说明文档 |
+| `campus_ws/src/campus_vision/` | 我写的 ROS2 节点:`main.cpp`(图像处理 → 目标解算 → 发布瞄准指令)、`five.cpp`(数字识别辅助) |
+| `campus_ws/digit_svm.yml` | 数字识别模型(SVM),配 `per_100_datasets` 数据集 |
+| `campus_ws/TDT文档/` | 我备赛期间的笔记:接口协议、`main.cpp` 逐项讲解、运行排障(踩过的坑都记在里面) |
+| `campus_ws/TDT接口与main.cpp说明.md` | 完整版说明:官方协议 + 我的代码逐行对照 |
+
+## 技术路线
+
+ROS2(Humble)+ OpenCV:接收游戏画面 → 红色灯条检测 → 装甲板配对 → PnP 解算位姿 → 发布 yaw/pitch/开火指令;SVM 识别装甲板数字;通过 `tdt_interface` 自定义话题与游戏主控通信。
 
 ## 快速开始
 
@@ -21,4 +25,4 @@ source install/setup.bash
 ros2 run campus_vision campus_vision
 ```
 
-> 详见 [campus_ws/README.md](campus_ws/README.md)。
+> 详细说明看我写的 [campus_ws/README.md](campus_ws/README.md) 和 [TDT文档](campus_ws/TDT文档/)。
